@@ -1,0 +1,12 @@
+{
+    "name": "Twig",
+    "description": "Twig template engine integration.",
+    "url": "https://sunlight-cms.org/",
+    "version": "1.0",
+    "api": "^8.0",
+    "php": "7.0",
+    "class": "TwigPlugin",
+    "events.web": [
+        ["hcm.twig.render", "$this::onHcmRender"]
+    ]
+}
