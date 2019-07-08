@@ -3,44 +3,50 @@
 namespace SunlightExtend\Twig;
 
 use Twig\Loader\FilesystemLoader;
+use Twig\Source;
 
 class TemplateLoader extends FilesystemLoader
 {
     /** @var array */
     private $overrides = [];
 
+    /** @var array */
+    private $originals = [];
+
     function getSourceContext($name)
     {
-        return parent::getSourceContext($this->resolveName($name));
+        $path = $this->findTemplate($this->resolveOverride($name));
+
+        return new Source(file_get_contents($path), $name, $path);
     }
 
-    function getCacheKey($name)
+    public function getCacheKey($name)
     {
-        return parent::getCacheKey($this->resolveName($name));
+        if (isset($this->originals[$name])) {
+            return 'original::' . parent::getCacheKey($this->originals[$name]);
+        }
+
+        return parent::getCacheKey($name);
     }
 
     function isFresh($name, $time)
     {
-        return parent::isFresh($this->resolveName($name), $time);
+        return parent::isFresh($this->resolveOverride($name), $time);
     }
 
     function exists($name)
     {
-        return parent::exists($this->resolveName($name));
+        return parent::exists($this->resolveOverride($name));
     }
 
     function override($name, $newName)
     {
         $this->overrides[$name] = $newName;
+        $this->originals["!{$name}"] = $name;
     }
 
-    private function resolveName($name)
+    private function resolveOverride($name): string
     {
-        if (($name[0] ?? '') === '!') {
-            // ignore overrides
-            return substr($name, 1);
-        }
-
-        return $this->overrides[$name] ?? $name;
+        return $this->originals[$name] ?? $this->overrides[$name] ?? $name;
     }
 }
