@@ -1,7 +1,7 @@
 Twig plugin
 ###########
 
-Twig 2 integration plugin.
+Twig integration plugin.
 
 .. contents::
 
@@ -9,14 +9,14 @@ Twig 2 integration plugin.
 Requirements
 ************
 
-- PHP 7.0+
+- PHP 7.2.5+
 - SunLight CMS 8
 
 
 Usage
 *****
 
-See `Twig 2 documentation <https://twig.symfony.com/doc/2.x/>`_.
+See `Twig documentation <https://twig.symfony.com/doc/3.x/>`_.
 
 .. code:: php
 

@@ -13,7 +13,7 @@ class StaticCallProxy
     private $rawMarkupMethodMap;
 
     /**
-     * @param string  $class target class name
+     * @param string $class target class name
      * @param array|null $rawMarkupMethodMap lowercased map of method names that return raw HTML markup
      */
     function __construct(string $class, ?array $rawMarkupMethodMap = null)
