@@ -13,14 +13,14 @@ class TemplateLoader extends FilesystemLoader
     /** @var array */
     private $originals = [];
 
-    function getSourceContext($name): Source
+    function getSourceContext(string $name): Source
     {
         $path = $this->findTemplate($this->resolveOverride($name));
 
         return new Source(file_get_contents($path), $name, $path);
     }
 
-    public function getCacheKey($name): string
+    public function getCacheKey(string $name): string
     {
         if (isset($this->originals[$name])) {
             return 'original::' . parent::getCacheKey($this->originals[$name]);
@@ -29,12 +29,12 @@ class TemplateLoader extends FilesystemLoader
         return parent::getCacheKey($name);
     }
 
-    function isFresh($name, $time): bool
+    function isFresh(string $name, int $time): bool
     {
         return parent::isFresh($this->resolveOverride($name), $time);
     }
 
-    function exists($name)
+    function exists(string $name): bool
     {
         return parent::exists($this->resolveOverride($name));
     }

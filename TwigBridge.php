@@ -3,15 +3,15 @@
 namespace SunlightExtend\Twig;
 
 use Kuria\Debug\Dumper;
-use Sunlight\Comment\Comment;
 use Sunlight\Core;
 use Sunlight\Extend;
+use Sunlight\GenericTemplates;
 use Sunlight\Hcm;
+use Sunlight\Post\PostService;
 use Sunlight\Router;
 use Sunlight\User;
 use Sunlight\Util\Form;
 use Sunlight\Util\Request;
-use Sunlight\Util\Url;
 use Sunlight\Util\UrlHelper;
 use Sunlight\Xsrf;
 use Twig\Environment;
@@ -41,7 +41,7 @@ abstract class TwigBridge
             throw new \LogicException('Cannot use Twig bridge before full system initialization');
         }
 
-        $loader = new TemplateLoader([], _root);
+        $loader = new TemplateLoader([], SL_ROOT);
 
         $loader->setPaths(['']);
         $loader->setPaths(['plugins/extend'], 'extend');
@@ -50,9 +50,9 @@ abstract class TwigBridge
         $env = new Environment(
             $loader,
             [
-                'debug' => _debug,
-                'strict_variables' => _debug,
-                'cache' => _root . 'system/cache/twig',
+                'debug' => Core::$debug,
+                'strict_variables' => Core::$debug,
+                'cache' => SL_ROOT . 'system/cache/twig',
             ]
         );
 
@@ -67,15 +67,13 @@ abstract class TwigBridge
     private static function addGlobals(Environment $env)
     {
         $env->addGlobal('sl', [
-            'debug' => _debug,
-            'root' => _root,
-            'loggedIn' => _logged_in,
-            'userData' => Core::$userData,
-            'userGroupData' => Core::$groupData,
+            'debug' => Core::$debug,
+            'root' => SL_ROOT,
+            'url' => Core::getCurrentUrl(),
+            'baseUrl' => Core::getBaseUrl(),
             'router' => new StaticCallProxy(Router::class, [
                 'user' => true,
             ]),
-            'url' => new StaticCallProxy(Url::class),
             'urlHelper' => new StaticCallProxy(UrlHelper::class),
             'hcm' => new StaticCallProxy(Hcm::class, [
                 'parse' => true,
@@ -109,8 +107,17 @@ abstract class TwigBridge
                 'edittime' => true,
                 'render' => true,
             ]),
-            'comment' => new StaticCallProxy(Comment::class, [
-                'render' => true,
+            'post' => new StaticCallProxy(PostService::class, [
+                'renderlist' => true,
+                'renderform' => true,
+                'renderpost' => true,
+            ]),
+            'generic' => new StaticCallProxy(GenericTemplates::class, [
+                'renderhead' => true,
+                'renderheadassets' => true,
+                'renderinfos' => true,
+                'rendermessagelist' => true,
+                'jslimitlength' => true,
             ]),
             'request' => new StaticCallProxy(Request::class),
         ]);

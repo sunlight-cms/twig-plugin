@@ -1,4 +1,5 @@
 {
+    "$schema": "../../../system/schema/extend.json",
     "name": "Twig",
     "description": "Twig template engine integration.",
     "url": "https://sunlight-cms.cz/",
@@ -7,6 +8,6 @@
     "php": "7.2.5",
     "class": "TwigPlugin",
     "events.web": [
-        ["hcm.twig.render", "$this::onHcmRender"]
+        {"event": "hcm.twig.render", "method": "onHcmRender"}
     ]
 }
