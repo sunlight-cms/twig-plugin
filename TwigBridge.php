@@ -71,10 +71,10 @@ abstract class TwigBridge
             'root' => SL_ROOT,
             'url' => Core::getCurrentUrl(),
             'baseUrl' => Core::getBaseUrl(),
+            'urlHelper' => new StaticCallProxy(UrlHelper::class),
             'router' => new StaticCallProxy(Router::class, [
                 'user' => true,
             ]),
-            'urlHelper' => new StaticCallProxy(UrlHelper::class),
             'hcm' => new StaticCallProxy(Hcm::class, [
                 'parse' => true,
                 'run' => true,

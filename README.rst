@@ -49,18 +49,17 @@ Variable             Description
 ==================== =========================================
 ``sl.debug``         debug mode (``true`` / ``false``)
 ``sl.root``          path to project root directory
-``sl.loggedIn``      user is logged in (``true`` / ``false``)
-``sl.userData``      user data array (if logged in)
-``sl.userGroupData`` user group data array (if logged in)
-``sl.router``        ``Sunlight\Router`` proxy
-``sl.url``           ``Sunlight\Util\Url`` proxy
+``sl.url``           current URL object
+``sl.baseUrl``       base URL object
 ``sl.urlHelper``     ``Sunlight\Util\UrlHelper`` proxy
+``sl.router``        ``Sunlight\Router`` proxy
 ``sl.hcm``           ``Sunlight\Hcm`` proxy
 ``sl.extend``        ``Sunlight\Extend`` proxy
 ``sl.xsrf``          ``Sunlight\Xsrf`` proxy
 ``sl.user``          ``Sunlight\User`` proxy
 ``sl.form``          ``Sunlight\Util\Form`` proxy
-``sl.comment``       ``Sunlight\Comment\Comment`` proxy
+``sl.post``          ``Sunlight\Post\PostService`` proxy
+``sl.generic``       ``Sunlight\GenericTemplates`` proxy
 ``sl.request``       ``Sunlight\Util\Request`` proxy
 ==================== =========================================
 
