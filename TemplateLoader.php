@@ -20,7 +20,7 @@ class TemplateLoader extends FilesystemLoader
         return new Source(file_get_contents($path), $name, $path);
     }
 
-    public function getCacheKey(string $name): string
+    function getCacheKey(string $name): string
     {
         if (isset($this->originals[$name])) {
             return 'original::' . parent::getCacheKey($this->originals[$name]);

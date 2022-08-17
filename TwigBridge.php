@@ -64,7 +64,7 @@ abstract class TwigBridge
         return $env;
     }
 
-    private static function addGlobals(Environment $env)
+    private static function addGlobals(Environment $env): void
     {
         $env->addGlobal('sl', [
             'debug' => Core::$debug,
@@ -123,11 +123,11 @@ abstract class TwigBridge
         ]);
     }
 
-    private static function addFunctions(Environment $env)
+    private static function addFunctions(Environment $env): void
     {
         $env->addFunction(new TwigFunction('lang', '_lang'));
         $env->addFunction(new TwigFunction('call', 'call_user_func_array', ['is_variadic' => true]));
-        $env->addFunction(new TwigFunction('dump', [static::class, 'dump'], ['needs_context' => true]));
+        $env->addFunction(new TwigFunction('dump', [__CLASS__, 'dump'], ['needs_context' => true]));
     }
 
     /**
