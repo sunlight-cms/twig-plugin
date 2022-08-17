@@ -4,8 +4,10 @@
     "description": "Twig template engine integration.",
     "url": "https://sunlight-cms.cz/",
     "version": "1.0",
-    "api": "^8.0",
-    "php": "7.2.5",
+    "environment": {
+        "system": "^8.0",
+        "php": ">=7.2.5"
+    },
     "class": "TwigPlugin",
     "events.web": [
         {"event": "hcm.twig.render", "method": "onHcmRender"}
