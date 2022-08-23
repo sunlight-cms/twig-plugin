@@ -133,14 +133,6 @@ abstract class TwigBridge
     /**
      * @internal
      */
-    static function call($callable, array $args = [])
-    {
-        return call_user_func_array($callable, $args);
-    }
-
-    /**
-     * @internal
-     */
     static function dump($context): string
     {
         if (func_num_args() > 1) {

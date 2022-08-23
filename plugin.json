@@ -8,8 +8,10 @@
         "system": "^8.0",
         "php": ">=7.2.5"
     },
-    "class": "TwigPlugin",
-    "events.web": [
-        {"event": "hcm.twig.render", "method": "onHcmRender"}
-    ]
+    "dependencies": {
+        "delme-test": "*"
+    },
+    "hcm": {
+        "twig": "hcm/twig.php"
+    }
 }

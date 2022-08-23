@@ -28,6 +28,15 @@ See `Twig documentation <https://twig.symfony.com/doc/3.x/>`_.
        'foo' => 'bar',
    ]);
 
+HCM module
+==========
+
+Any extra arguments after template name are available in the ``args`` variable.
+
+::
+
+  [hcm]twig,upload/my_template.html.twig,foo,bar[/hcm]
+
 
 Namespaces
 ==========
