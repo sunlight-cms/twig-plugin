@@ -12,6 +12,6 @@
         "delme-test": "*"
     },
     "hcm": {
-        "twig": "hcm/twig.php"
+        "twig": {"script": "hcm/twig.php"}
     }
 }
