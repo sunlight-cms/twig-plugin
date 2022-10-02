@@ -8,9 +8,6 @@
         "system": "^8.0",
         "php": ">=7.2.5"
     },
-    "dependencies": {
-        "delme-test": "*"
-    },
     "hcm": {
         "twig": {"script": "hcm/twig.php"}
     }
