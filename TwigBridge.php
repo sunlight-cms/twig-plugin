@@ -126,7 +126,7 @@ abstract class TwigBridge
     private static function addFunctions(Environment $env): void
     {
         $env->addFunction(new TwigFunction('lang', '_lang'));
-        $env->addFunction(new TwigFunction('call', 'call_user_func_array', ['is_variadic' => true]));
+        $env->addFunction(new TwigFunction('call', [__CLASS__, 'call'], ['is_variadic' => true]));
         $env->addFunction(new TwigFunction('dump', [__CLASS__, 'dump'], ['needs_context' => true]));
     }
 
@@ -143,5 +143,13 @@ abstract class TwigBridge
         }
 
         return Dumper::dump($context);
+    }
+
+    /**
+     * @internal
+     */
+    static function call($callback, ...$args)
+    {
+        return $callback(...$args);
     }
 }
