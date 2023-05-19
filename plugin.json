@@ -8,6 +8,9 @@
         "system": "^8.0",
         "php": ">=7.2.5"
     },
+    "events.admin": [
+        {"event": "admin.fman.extensions", "script": "event/add_admin_fman_ext.php"}
+    ],
     "hcm": {
         "twig": {"script": "hcm/twig.php"}
     }
