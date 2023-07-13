@@ -10,9 +10,7 @@ use Sunlight\Hcm;
 use Sunlight\Post\PostService;
 use Sunlight\Router;
 use Sunlight\User;
-use Sunlight\Util\Form;
-use Sunlight\Util\Request;
-use Sunlight\Util\UrlHelper;
+use Sunlight\Util;
 use Sunlight\Xsrf;
 use Twig\Environment;
 use Twig\TwigFunction;
@@ -71,7 +69,8 @@ abstract class TwigBridge
             'root' => SL_ROOT,
             'url' => Core::getCurrentUrl(),
             'baseUrl' => Core::getBaseUrl(),
-            'urlHelper' => new StaticCallProxy(UrlHelper::class),
+            'urlHelper' => new StaticCallProxy(Util\UrlHelper::class),
+            'stringHelper' => new StaticCallProxy(Util\StringHelper::class),
             'router' => new StaticCallProxy(Router::class, [
                 'user' => true,
             ]),
@@ -91,7 +90,7 @@ abstract class TwigBridge
                 'renderavatarfromquery' => true,
                 'renderpostrepeatform' => true,
             ]),
-            'form' => new StaticCallProxy(Form::class, [
+            'form' => new StaticCallProxy(Util\Form::class, [
                 'activatecheckbox' => true,
                 'disableinputunless' => true,
                 'restorechecked' => true,
@@ -119,7 +118,7 @@ abstract class TwigBridge
                 'rendermessagelist' => true,
                 'jslimitlength' => true,
             ]),
-            'request' => new StaticCallProxy(Request::class),
+            'request' => new StaticCallProxy(Util\Request::class),
         ]);
     }
 
