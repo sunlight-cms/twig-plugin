@@ -5,9 +5,9 @@
     "authors": [
         {"url": "https://sunlight-cms.cz/"}
     ],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "environment": {
-        "system": "^8.0",
+        "system": "^8.1",
         "php": ">=7.2.5"
     },
     "events.admin": [

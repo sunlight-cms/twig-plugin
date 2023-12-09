@@ -20,7 +20,7 @@ class ClearCacheAction extends PluginAction
 
     function execute(): ActionResult
     {
-        return Filesystem::purgeDirectory(TwigBridge::getEnvironment()->getCache(), ['keep_dir' => true])
+        return Filesystem::emptyDirectory(TwigBridge::getEnvironment()->getCache())
             ? ActionResult::success()
             : ActionResult::failure();
     }
