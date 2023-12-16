@@ -1,6 +1,7 @@
 {
     "name": "sunlight-cms/twig-plugin",
     "description": "Twig integration plugin",
+    "license": "MIT",
     "require": {
         "twig/twig": "^3.3.7"
     },
