@@ -1,5 +1,14 @@
 {
+    "name": "sunlight-cms/twig-plugin",
+    "description": "Twig integration plugin",
     "require": {
         "twig/twig": "^3.3.7"
+    },
+    "extra": {
+        "sunlight-plugins": {
+            "extend": {
+                "twig": "."
+            }
+        }
     }
 }
